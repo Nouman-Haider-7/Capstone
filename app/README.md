@@ -1,36 +1,59 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+﻿# StageWay — Casting Assistant
 
-## Getting Started
+An AI-powered conversational assistant that helps directors turn a vague casting idea into a clear, structured casting call.
 
-First, run the development server:
+## Problem & Purpose
 
-```bash
+Casting and audition coordination for independent theater and small productions is often disorganized. StageWay is a two-sided casting marketplace connecting directors with actors. This capstone focuses on one core piece: the Casting Assistant, a chat interface that interviews a director about the role they are casting and produces a structured, ready-to-post casting call draft.
+
+## Live Demo
+
+Live URL: https://capstone-wvqh.vercel.app/casting-assistant
+
+## Tech Stack
+
+- Framework: Next.js 16 (App Router)
+- AI: Google Gemini via Vercel AI SDK
+- Testing: Vitest and React Testing Library
+- Styling: Plain CSS with custom properties
+- Deployment: Vercel
+
+## Setup and Run Locally
+
+Requirements: Node.js 18+, a free Gemini API key from Google AI Studio.
+
+cd app
+npm install
+
+Create a file called .env.local in the app folder containing:
+GOOGLE_GENERATIVE_AI_API_KEY=your_key_here
+
+Then run:
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Visit http://localhost:3000/casting-assistant
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Running Tests
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+npm test
 
-## Learn More
+## Architecture Overview
 
-To learn more about Next.js, take a look at the following resources:
+app/api/chat/route.ts handles the server side AI streaming.
+app/casting-assistant/page.tsx is the static page shell.
+app/casting-assistant/components/ChatInterface.tsx is the interactive chat.
+app/casting-assistant/CastingDraftCard.tsx renders the structured draft.
+lib/ai-config.ts holds the model choice and system prompt.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## AI Integration
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The assistant uses Gemini through streamText in the AI SDK. The system prompt instructs it to ask about role type, age range, genre, and requirements, then output a structured draft that gets rendered as a real card component instead of plain text.
 
-## Deploy on Vercel
+## Known Limitations
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Sidebar navigation is decorative only. No persistence across refresh. No authentication yet. This is one piece of a larger planned platform.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Accessibility and Performance
+
+axe DevTools: 0 issues, WCAG 2.1 AA.
+Lighthouse mobile: Performance 95, Accessibility 100, Best Practices 100, SEO 100.

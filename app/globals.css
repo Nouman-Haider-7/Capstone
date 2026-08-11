@@ -1,0 +1,53 @@
+﻿:root {
+  --color-bg: #0f0d13;
+  --color-surface: #1c1720;
+  --color-accent: #e8b24d;
+  --color-assistant-bubble: #2a1f2e;
+  --color-user-bubble: #201a26;
+  --color-text: #f2ede4;
+  --color-text-muted: #9b8f9e;
+  --color-border: #332a38;
+  --font-display: var(--font-display-loaded), serif;
+  --font-body: var(--font-body-loaded), system-ui, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+}
+
+.typing-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+  display: inline-block;
+  animation: typing-bounce 1.2s infinite ease-in-out;
+}
+
+@keyframes typing-bounce {
+  0%, 60%, 100% {
+    opacity: 0.3;
+    transform: translateY(0);
+  }
+  30% {
+    opacity: 1;
+    transform: translateY(-3px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
